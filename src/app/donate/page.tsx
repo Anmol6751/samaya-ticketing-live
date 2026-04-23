@@ -1,12 +1,11 @@
-'use client';
+'use client'
 
-import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Menu, X, Sun, Moon, Instagram, Facebook, MessageCircle, Heart, Target, Users, Zap, ChevronDown } from 'lucide-react';
-import Footer from '@/components/Footer';
+import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Menu, X, Sun, Moon, Instagram, Facebook, MessageCircle, Heart, Target, Users, Zap, ChevronDown } from 'lucide-react'
+import Footer from '@/components/Footer'
 
-// UPDATED: Added Get Involved sub-items and changed "Events" to "Programs"
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Programs', href: '/events' },
@@ -22,7 +21,7 @@ const navigation = [
     ]
   },
   { name: 'Contact', href: '/contact' },
-];
+]
 
 const donationTiers = [
   {
@@ -30,74 +29,77 @@ const donationTiers = [
     description: 'Helps provide mental health support and community resources to someone in need',
     icon: Heart,
     color: 'from-pink-500 to-red-500',
-    benefits: ['Community impact', 'Email receipt']
+    benefits: ['Community impact', 'Email receipt'],
+    stripeUrl: 'https://buy.stripe.com/test_28EeVf3vw5dM0T09Qv7ss00'
   },
   {
     amount: '$50',
     description: 'Supports educational materials and learning resources for underprivileged individuals',
     icon: Target,
     color: 'from-emerald-500 to-teal-500',
-    benefits: ['Community impact', 'Email receipt']
+    benefits: ['Community impact', 'Email receipt'],
+    stripeUrl: 'https://buy.stripe.com/test_cNidRb2rseOm7ho9Qv7ss01'
   },
   {
     amount: '$100',
     description: 'Funds wellness programs and community support for women globally',
     icon: Users,
     color: 'from-blue-500 to-cyan-500',
-    benefits: ['Community impact', 'Email receipt', 'Special recognition']
+    benefits: ['Community impact', 'Email receipt', 'Special recognition'],
+    stripeUrl: 'https://buy.stripe.com/test_fZu6oJgiidKi8lsfaP7ss02'
   },
   {
     amount: 'Custom',
     description: 'Your donation will be distributed to those in need across the globe',
     icon: Zap,
     color: 'from-yellow-500 to-orange-500',
-    benefits: ['Community impact', 'Email receipt', 'Full transparency']
+    benefits: ['Community impact', 'Email receipt', 'Full transparency'],
+    stripeUrl: 'https://buy.stripe.com/test_fZu6oJgiidKi8lsfaP7ss02'
   },
-];
+]
 
 export default function Donate() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showZelleModal, setShowZelleModal] = useState(false);
-  const [showVenmoModal, setShowVenmoModal] = useState(false);
-  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
-  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [showZelleModal, setShowZelleModal] = useState(false)
+  const [showVenmoModal, setShowVenmoModal] = useState(false)
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set())
+  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({})
 
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-  }, []);
+    document.documentElement.classList.add('dark')
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
-      const newVisibleSections = new Set<string>();
-      const entries = Object.entries(sectionRefs.current);
+      const newVisibleSections = new Set<string>()
+      const entries = Object.entries(sectionRefs.current)
       
       entries.forEach(([key, element]) => {
         if (element) {
-          const rect = element.getBoundingClientRect();
+          const rect = element.getBoundingClientRect()
           if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
-            newVisibleSections.add(key);
+            newVisibleSections.add(key)
           }
         }
-      });
+      })
       
-      setVisibleSections(newVisibleSections);
-    };
+      setVisibleSections(newVisibleSections)
+    }
     
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <div className="dark">
       <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-black text-white transition-colors duration-500 relative overflow-hidden">
-        {/* Animated background elements */}
+        
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 left-1/3 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
         </div>
         
-        {/* Header */}
         <header className="fixed w-full top-0 z-50 bg-slate-900/90 backdrop-blur-xl border-b border-slate-800/50 shadow-lg shadow-black/20 transition-all duration-300">
           <nav className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex justify-between items-center">
             <Link href="/" className="flex items-center space-x-3 group">
@@ -111,7 +113,6 @@ export default function Donate() {
               </div>
             </Link>
 
-            {/* Desktop Menu - UPDATED WITH DROPDOWN */}
             <div className="hidden md:flex items-center space-x-8">
               {navigation.map((item) => (
                 item.subItems ? (
@@ -143,7 +144,6 @@ export default function Donate() {
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center space-x-4">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -154,7 +154,6 @@ export default function Donate() {
             </div>
           </nav>
 
-          {/* Mobile Menu - UPDATED WITH SUB-ITEMS */}
           {mobileMenuOpen && (
             <div className="md:hidden bg-slate-900 border-t border-slate-800 animate-in slide-in-from-top duration-300">
               <div className="px-6 py-4 space-y-4">
@@ -191,9 +190,8 @@ export default function Donate() {
           )}
         </header>
 
-        {/* Main Content */}
         <main className="pt-24 pb-16 relative z-10">
-          {/* Hero Section */}
+          
           <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
             <div className="text-center mb-12">
               <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-emerald-300 via-teal-400 to-cyan-400 text-transparent bg-clip-text animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -204,10 +202,9 @@ export default function Donate() {
               </p>
             </div>
 
-            {/* Impact Preview */}
             <div 
               className="grid md:grid-cols-3 gap-6 mb-16 transition-all duration-1000"
-              ref={(el) => { if (el) sectionRefs.current['impact-preview'] = el; }}
+              ref={(el) => { if (el) sectionRefs.current['impact-preview'] = el }}
               style={{
                 opacity: visibleSections.has('impact-preview') ? 1 : 0.3,
                 transform: visibleSections.has('impact-preview') ? 'translateY(0)' : 'translateY(30px)',
@@ -228,10 +225,9 @@ export default function Donate() {
             </div>
           </section>
 
-          {/* Donation Tiers */}
           <section 
             className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 transition-all duration-1000"
-            ref={(el) => { if (el) sectionRefs.current['tiers'] = el; }}
+            ref={(el) => { if (el) sectionRefs.current['tiers'] = el }}
             style={{
               opacity: visibleSections.has('tiers') ? 1 : 0.3,
               transform: visibleSections.has('tiers') ? 'translateY(0)' : 'translateY(30px)',
@@ -242,9 +238,7 @@ export default function Donate() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {donationTiers.map((tier, index) => {
-                const IconComponent = tier.icon;
-                const amountValue = tier.amount.replace('$', '').replace('Custom', '');
-                const autoooksUrl = amountValue ? `https://app.autobooks.co/pay/samaya-global?amount=${amountValue}` : 'https://app.autobooks.co/pay/samaya-global';
+                const IconComponent = tier.icon
                 
                 return (
                   <div
@@ -265,7 +259,7 @@ export default function Donate() {
                       ))}
                     </ul>
                     <a
-                      href={autoooksUrl}
+                      href={tier.stripeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`block w-full py-3 rounded-lg font-bold text-center bg-gradient-to-r ${tier.color} text-white hover:shadow-lg transition-all duration-300 hover:scale-105 mt-auto`}
@@ -273,15 +267,14 @@ export default function Donate() {
                       Donate {tier.amount === 'Custom' ? 'Now' : tier.amount}
                     </a>
                   </div>
-                );
+                )
               })}
             </div>
           </section>
 
-          {/* Donation Methods */}
           <section 
             className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 transition-all duration-1000"
-            ref={(el) => { if (el) sectionRefs.current['methods'] = el; }}
+            ref={(el) => { if (el) sectionRefs.current['methods'] = el }}
             style={{
               opacity: visibleSections.has('methods') ? 1 : 0.3,
               transform: visibleSections.has('methods') ? 'translateY(0)' : 'translateY(30px)',
@@ -292,7 +285,6 @@ export default function Donate() {
             </h2>
             
             <div className="space-y-6">
-              {/* Credit Card */}
               <div className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-emerald-500/30 p-8 rounded-2xl backdrop-blur-xl hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300">
                 <div className="flex items-start justify-between">
                   <div>
@@ -301,7 +293,7 @@ export default function Donate() {
                   </div>
                 </div>
                 <a
-                  href="https://app.autobooks.co/pay/samaya-global"
+                  href="https://buy.stripe.com/test_fZu6oJgiidKi8lsfaP7ss02"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-8 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-cyan-400 text-white font-bold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/50"
@@ -310,7 +302,6 @@ export default function Donate() {
                 </a>
               </div>
 
-              {/* Venmo */}
               <div className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-blue-500/30 p-8 rounded-2xl backdrop-blur-xl hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
                 <div className="flex items-start justify-between">
                   <div>
@@ -327,7 +318,6 @@ export default function Donate() {
                 </button>
               </div>
 
-              {/* Zelle */}
               <div className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-purple-500/30 p-8 rounded-2xl backdrop-blur-xl hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
                 <div className="flex items-start justify-between">
                   <div>
@@ -344,7 +334,6 @@ export default function Donate() {
                 </button>
               </div>
 
-              {/* Bank Transfer */}
               <div className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-600/50 p-8 rounded-2xl backdrop-blur-xl hover:border-slate-500/50 hover:shadow-lg hover:shadow-slate-500/20 transition-all duration-300">
                 <div className="flex items-start justify-between">
                   <div>
@@ -362,10 +351,9 @@ export default function Donate() {
             </div>
           </section>
 
-          {/* Why Donate Section */}
           <section 
             className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 transition-all duration-1000"
-            ref={(el) => { if (el) sectionRefs.current['why'] = el; }}
+            ref={(el) => { if (el) sectionRefs.current['why'] = el }}
             style={{
               opacity: visibleSections.has('why') ? 1 : 0.3,
               transform: visibleSections.has('why') ? 'translateY(0)' : 'translateY(30px)',
@@ -414,10 +402,9 @@ export default function Donate() {
             </div>
           </section>
 
-          {/* CTA Section */}
           <section 
             className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 transition-all duration-1000"
-            ref={(el) => { if (el) sectionRefs.current['cta'] = el; }}
+            ref={(el) => { if (el) sectionRefs.current['cta'] = el }}
             style={{
               opacity: visibleSections.has('cta') ? 1 : 0.3,
               transform: visibleSections.has('cta') ? 'translateY(0)' : 'translateY(30px)',
@@ -429,7 +416,7 @@ export default function Donate() {
                 Every dollar donated goes directly to support women and children across the globe from communities in the USA to India and beyond. Your contribution creates real, measurable change in the lives of those who need it most.
               </p>
               <a
-                href="https://app.autobooks.co/pay/samaya-global"
+                href="https://buy.stripe.com/test_fZu6oJgiidKi8lsfaP7ss02"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-10 py-4 bg-white text-emerald-600 font-bold rounded-lg hover:bg-slate-100 transition-all duration-300 hover:scale-105 hover:shadow-xl"
@@ -439,7 +426,6 @@ export default function Donate() {
             </div>
           </section>
 
-        {/* Zelle Modal */}
         {showZelleModal && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 max-w-md w-full border border-purple-500/30 shadow-2xl animate-in fade-in zoom-in duration-300">
@@ -473,7 +459,6 @@ export default function Donate() {
 
         </main>
 
-        {/* Venmo Modal */}
         {showVenmoModal && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 max-w-md w-full border border-blue-500/30 shadow-2xl animate-in fade-in zoom-in duration-300">
@@ -507,5 +492,5 @@ export default function Donate() {
         <Footer />
       </div>
     </div>
-  );
+  )
 }
