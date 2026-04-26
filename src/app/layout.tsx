@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ChatWidget from "@/components/ChatWidget";
+import Chatbot from "../components/Chatbot";
 
 export const metadata: Metadata = {
   title: "Samaya Global | Uplifting Women and Children",
@@ -14,12 +14,14 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+}) {  
   return (
     <html lang="en">
-      {/* Add suppressHydrationWarning here 👇 */}
       <body suppressHydrationWarning className="antialiased">
         {children}
+        
+        {/* The bot goes right here below children! */}
+        <Chatbot /> 
       </body>
     </html>
   )

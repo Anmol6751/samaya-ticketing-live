@@ -226,8 +226,8 @@ export default function Contact() {
               <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl p-6 rounded-2xl border border-cyan-500/30 text-center hover:border-cyan-400/60 transition-all duration-500 transform hover:scale-[1.05] group hover:shadow-lg hover:shadow-cyan-500/20">
                 <h3 className="text-xl font-bold mb-2 group-hover:text-cyan-300 transition-colors duration-300">🌐 Social Media</h3>
                 <div className="flex justify-center gap-4">
-                  <a href="https://instagram.com" className="text-emerald-400 hover:text-emerald-300 transition-colors duration-300">Instagram</a>
-                  <a href="https://facebook.com" className="text-emerald-400 hover:text-emerald-300 transition-colors duration-300">Facebook</a>
+                  <a href="https://www.instagram.com/samaya_2024/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors duration-300">Instagram</a>
+                  <a href="https://www.facebook.com/samaya.2024/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors duration-300">Facebook</a>
                 </div>
               </div>
             </div>

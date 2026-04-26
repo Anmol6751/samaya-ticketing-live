@@ -33,6 +33,12 @@ const teamMembers = [
     description: 'Leading technology initiatives to amplify our mission of supporting women and children through education, care, and community empowerment.',
     image: '/images/team/MohitUnechaTechnology Strategist.jpg',
   },
+  {
+    name: 'Anmol Shrotriya',
+    role: 'Lead Technology Analyst',
+    description: 'Architecting secure digital platforms and integrating intelligent, data-driven solutions to expand our global outreach and operational capabilities.',
+    image: '', // Leave empty to automatically trigger your stylish 'A' fallback avatar, or add your image path here!
+  },
 ];
 
 export default function Team() {
@@ -70,8 +76,8 @@ export default function Team() {
                 >
                   {item.name}
                 </Link>
-              ))}
-            </div>
+                ))}
+              </div>
 
             <div className="md:hidden flex items-center space-x-4">
               <button
@@ -105,7 +111,7 @@ export default function Team() {
         <main className="pt-24 pb-16 relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h1 className="text-6xl font-bold mb-6 pt-8 bg-gradient-to-r from-emerald-300 via-teal-400 to-cyan-400 text-transparent bg-clip-text animate-in fade-in slide-in-from-bottom-4 duration-700\">Our Leadership</h1>
+              <h1 className="text-6xl font-bold mb-6 pt-8 bg-gradient-to-r from-emerald-300 via-teal-400 to-cyan-400 text-transparent bg-clip-text animate-in fade-in slide-in-from-bottom-4 duration-700">Our Leadership</h1>
               <p className="text-lg text-slate-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">Passionate advocates dedicated to uplifting women and children facing emotional, social, and economic hardship</p>
             </div>
             
@@ -139,8 +145,8 @@ export default function Team() {
                 ))}
               </div>
 
-              {/* Technology Strategist - Centered Below */}
-              <div className="w-full max-w-2xl">
+              {/* Technology Team Row - Now correctly aligned in a grid */}
+              <div className="grid md:grid-cols-2 gap-12 w-full max-w-4xl">
                 {teamMembers.slice(2).map((member, idx) => (
                   <div key={idx} className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl p-10 rounded-3xl border border-teal-500/30 hover:border-emerald-400/60 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/20 hover:scale-[1.02] group">
                     {member.image ? (
