@@ -1,14 +1,35 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI, SchemaType, FunctionDeclaration } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 
+// 1. INITIALIZE API CLIENTS
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+);
+
+// 2. DEFINE THE TOOL FOR GEMINI
+const ticketTool: FunctionDeclaration = {
+  name: "check_ticket_availability",
+  description: "Check the database to see how many event tickets are remaining.",
+  parameters: {
+    type: SchemaType.OBJECT,
+    properties: {}, // No user inputs needed for this tool
+  },
+};
 
 export async function POST(req: Request) {
   try {
     const { message } = await req.json();
     
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    // 3. INJECT THE TOOL INTO THE MODEL
+    const model = genAI.getGenerativeModel({ 
+      model: 'gemini-2.5-flash',
+      tools: [{ functionDeclarations: [ticketTool] }] 
+    });
     
+    // 4. THE COMPREHENSIVE KNOWLEDGE BASE
     const systemPrompt = `You are the official AI assistant for Samaya Global, a US-based 501(c)(3) nonprofit dedicated to uplifting women and children facing emotional, social, and economic hardship. 
 
     ### SAMAYA GLOBAL COMPREHENSIVE KNOWLEDGE BASE:
@@ -46,10 +67,46 @@ export async function POST(req: Request) {
     
     User says: ${message}`;
 
-    const result = await model.generateContent(systemPrompt);
-    const text = result.response.text();
+    // 5. START THE CHAT
+    const chat = model.startChat();
+    const result = await chat.sendMessage(systemPrompt);
+    
+    // 6. CHECK IF GEMINI NEEDED TO USE THE TOOL
+    const functionCalls = result.response.functionCalls();
+    
+    if (functionCalls && functionCalls.length > 0) {
+      const call = functionCalls[0];
+      
+      // If Gemini realizes the user is asking about tickets:
+      if (call.name === "check_ticket_availability") {
+        
+        // ACTUAL DATABASE FETCH:
+        const { data, error } = await supabase.from('tickets').select('*');
+        
+        if (error) {
+          console.error("Supabase Error:", error);
+        }
 
+        // Calculate live tickets left (Assuming 200 total capacity for the event)
+        const ticketsSold = data ? data.length : 0;
+        const realTicketsRemaining = 200 - ticketsSold;
+        
+        // Feed the live database result back into Gemini so it can generate a human response
+        const finalResult = await chat.sendMessage([{
+          functionResponse: {
+            name: "check_ticket_availability",
+            response: { tickets_remaining: realTicketsRemaining }
+          }
+        }]);
+        
+        return NextResponse.json({ reply: finalResult.response.text() });
+      }
+    }
+
+    // 7. IF NO TOOL WAS NEEDED, JUST RETURN THE NORMAL TEXT
+    const text = result.response.text();
     return NextResponse.json({ reply: text });
+
   } catch (error) {
     console.error('Chat API Error:', error);
     return NextResponse.json(
