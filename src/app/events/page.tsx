@@ -36,8 +36,8 @@ const eventPhotos = [
   '/images/eventphotos/dandiya_2024_3.jpg',
 ];
 
-const upcomingEvents = [
-  {
+const upcomingEvents: any[] = [
+ /* {
     title: "TEST EVENT: Samaya Annual Charity Gala",
     date: "December 15, 2026",
     location: "The Grand Hotel, New York, NY",
@@ -50,6 +50,7 @@ const upcomingEvents = [
       "Full course dinner and drinks included",
     ],
   }
+    */
 ];
 
 const previousEvents = [

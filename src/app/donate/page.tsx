@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, Sun, Moon, Instagram, Facebook, MessageCircle, Heart, Target, Users, Zap, ChevronDown } from 'lucide-react'
+import { Menu, X, Target, Users, Zap, Heart, ChevronDown } from 'lucide-react'
 import Footer from '@/components/Footer'
 
 const navigation = [
@@ -192,14 +192,33 @@ export default function Donate() {
 
         <main className="pt-24 pb-16 relative z-10">
           
-          <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-            <div className="text-center mb-12">
-              <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-emerald-300 via-teal-400 to-cyan-400 text-transparent bg-clip-text animate-in fade-in slide-in-from-bottom-4 duration-700">
-                Help Those in Need
-              </h1>
-              <p className="text-xl text-slate-300 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 max-w-2xl mx-auto">
-                Your generous donation will help women and children in need across the globe from the USA to India and beyond. Together, we can create meaningful change.
-              </p>
+          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+            {/* NEW HERO SECTION WITH IMAGE AND MESSAGE */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-16 text-left">
+              <div className="space-y-6">
+                <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-300 via-teal-400 to-cyan-400 text-transparent bg-clip-text animate-in fade-in slide-in-from-bottom-4 duration-700">
+                  Help Those in Need
+                </h1>
+                <div className="text-lg text-slate-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 leading-relaxed">
+                  <p className="mb-4 italic text-emerald-400 border-l-2 border-emerald-500 pl-4">
+                    "We make a living by what we get, but we make a life by what we give."
+                  </p>
+                  <p>
+                    Thank you for being the heartbeat of Samaya Global. Your generous donation directly provides food, shelter, and mental health support to those facing emotional and economic hardship. Together, we are building a more compassionate world.
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative h-80 md:h-96 w-full rounded-3xl overflow-hidden shadow-2xl border border-emerald-500/20 animate-in fade-in zoom-in duration-700 delay-200">
+                {/* Using the yoga image as a temporary placeholder! */}
+                <Image 
+                  src="/images/yoga/yoga-group.jpeg" 
+                  alt="Community Impact"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              </div>
             </div>
 
             <div 
@@ -258,14 +277,12 @@ export default function Donate() {
                         </li>
                       ))}
                     </ul>
-                    <a
-                      href={tier.stripeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      href={`/donate/impact?amount=${tier.amount}&desc=${encodeURIComponent(tier.description)}&url=${encodeURIComponent(tier.stripeUrl)}`}
                       className={`block w-full py-3 rounded-lg font-bold text-center bg-gradient-to-r ${tier.color} text-white hover:shadow-lg transition-all duration-300 hover:scale-105 mt-auto`}
                     >
                       Donate {tier.amount === 'Custom' ? 'Now' : tier.amount}
-                    </a>
+                    </Link>
                   </div>
                 )
               })}
