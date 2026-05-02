@@ -318,7 +318,7 @@ export default function Events() {
                         </div>
                         
                         <ul className="space-y-2 text-sm text-slate-300 mb-8 grid sm:grid-cols-2 gap-x-4">
-                          {event.highlights.map((highlight, i) => (
+                          {event.highlights.map((highlight: string, i: number) => (
                             <li key={i} className="flex items-start">
                               <span className="mr-2 text-emerald-400">✓</span>
                               <span>{highlight}</span>
@@ -422,7 +422,7 @@ export default function Events() {
                     <p className="text-slate-300 mb-2"><strong>📅</strong> {event.date}</p>
                     <p className="text-slate-300 mb-4"><strong>📍</strong> {event.location}</p>
                     <ul className="space-y-2 text-sm text-slate-300 flex-grow mb-6">
-                      {event.highlights.map((highlight, i) => (
+                      {event.highlights.map((highlight: string, i: number) => (
                         <li key={i} className="flex items-start">
                           <span className="mr-2 text-emerald-400">✓</span>
                           <span>{highlight}</span>
