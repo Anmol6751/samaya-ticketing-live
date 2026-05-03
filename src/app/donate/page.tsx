@@ -210,10 +210,9 @@ export default function Donate() {
               </div>
 
               <div className="relative h-80 md:h-96 w-full rounded-3xl overflow-hidden shadow-2xl border border-emerald-500/20 animate-in fade-in zoom-in duration-700 delay-200">
-                {/* Using the yoga image as a temporary placeholder! */}
                 <Image 
-                  src="/images/yoga/yoga-group.jpeg" 
-                  alt="Community Impact"
+                  src="/images/Donate/charity-impact.png" 
+                  alt="Community Support and Charity"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-700"
                 />
@@ -369,51 +368,64 @@ export default function Donate() {
           </section>
 
           <section 
-            className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 transition-all duration-1000"
+            className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 transition-all duration-1000"
             ref={(el) => { if (el) sectionRefs.current['why'] = el }}
             style={{
               opacity: visibleSections.has('why') ? 1 : 0.3,
               transform: visibleSections.has('why') ? 'translateY(0)' : 'translateY(30px)',
             }}
           >
-            <div className="bg-gradient-to-br from-emerald-950/40 to-teal-950/40 border border-emerald-500/40 p-12 rounded-2xl backdrop-blur-xl">
-              <h3 className="text-4xl font-bold mb-8 bg-gradient-to-r from-emerald-300 to-teal-400 text-transparent bg-clip-text">Why Your Donation Matters</h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-emerald-300 font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Women's Mental Health</h4>
-                    <p className="text-slate-400">Support programs for women experiencing loneliness, isolation, and depression</p>
+            <div className="bg-gradient-to-br from-emerald-950/40 to-teal-950/40 border border-emerald-500/40 overflow-hidden rounded-2xl backdrop-blur-xl shadow-2xl">
+              <div className="grid lg:grid-cols-2">
+                <div className="p-8 md:p-12">
+                  <h3 className="text-4xl font-bold mb-8 bg-gradient-to-r from-emerald-300 to-teal-400 text-transparent bg-clip-text">Why Your Donation Matters</h3>
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-emerald-300 font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Women's Mental Health</h4>
+                        <p className="text-slate-400">Support programs for women experiencing loneliness, isolation, and depression</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-emerald-300 font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Children's Education</h4>
+                        <p className="text-slate-400">Fund education and healthcare resources for underprivileged children</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-emerald-300 font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Community Building</h4>
+                        <p className="text-slate-400">Create safe, compassionate spaces where people feel valued and connected</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-emerald-300 font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Cultural Programs</h4>
+                        <p className="text-slate-400">Host meaningful gatherings that bring diverse communities together</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-emerald-300 font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Children's Education</h4>
-                    <p className="text-slate-400">Fund education and healthcare resources for underprivileged children</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-emerald-300 font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Community Building</h4>
-                    <p className="text-slate-400">Create safe, compassionate spaces where people feel valued and connected</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-emerald-300 font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Cultural Programs</h4>
-                    <p className="text-slate-400">Host meaningful gatherings that bring diverse communities together</p>
-                  </div>
+                <div className="relative min-h-[400px] lg:min-h-full w-full">
+                  <Image 
+                    src="/images/Donate/charity-impact.png" 
+                    alt="Volunteers helping the community" 
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-emerald-950/80 lg:via-emerald-950/20 lg:to-transparent"></div>
                 </div>
               </div>
             </div>

@@ -32,7 +32,7 @@ function ImpactContent() {
             Before we securely process your <span className="text-emerald-400 font-bold">{amount}</span> donation, we wanted to take a moment to say thank you. 
           </p>
           
-          <div className="bg-emerald-950/30 border border-emerald-500/30 p-6 rounded-2xl backdrop-blur-sm">
+          <div className="bg-emerald-950/30 border border-emerald-500/30 p-6 rounded-2xl backdrop-blur-sm mb-8">
             <div className="flex items-start gap-4">
               <div className="p-3 bg-emerald-500/20 rounded-full mt-1">
                 <Heart className="w-6 h-6 text-emerald-400" />
@@ -41,6 +41,19 @@ function ImpactContent() {
                 <h3 className="text-lg font-bold text-emerald-300 mb-2">Your Impact:</h3>
                 <p className="text-slate-300">{description}</p>
               </div>
+            </div>
+          </div>
+
+          <div className="relative h-64 w-full rounded-2xl overflow-hidden shadow-2xl border border-emerald-500/20">
+            <Image 
+              src="/images/Donate/charity-impact.png" 
+              alt="Community Impact" 
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4 text-emerald-300 font-medium text-sm text-center tracking-wide">
+              Together we make a difference.
             </div>
           </div>
         </div>

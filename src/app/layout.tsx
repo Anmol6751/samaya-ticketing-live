@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Samaya Global | Uplifting Women and Children",
   description: "Samaya Global is a US-based nonprofit dedicated to uplifting women and children facing emotional, social, and economic hardship.",
   icons: {
-    icon: '/favicon.ico',
+    icon: '/images/logo/samaya logo.png',
   },
 };
 

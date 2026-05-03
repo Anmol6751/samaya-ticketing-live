@@ -194,11 +194,10 @@ export default function Contact() {
 
                 {message && (
                   <div
-                    className={`p-4 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300 ${
-                      message.includes('success')
+                    className={`p-4 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300 ${message.includes('success')
                         ? 'bg-emerald-900/30 border border-emerald-500/50 text-emerald-300'
                         : 'bg-red-900/30 border border-red-500/50 text-red-300'
-                    }`}
+                      }`}
                   >
                     {message}
                   </div>
